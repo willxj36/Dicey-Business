@@ -1,19 +1,34 @@
 class Die {
     constructor() {
-        this.value = this.roll();
-        $('#dice-container').append(`<div class="dice border border-3 border-dark rounded-3 m-3" id="${counter}">${this.value}</div>`);
+        $('#dice-container').append(`<div class="dice border border-3 border-dark rounded-3 m-3" id="${counter}"></div>`);
+        this.div = $(`#${counter}`);
+        this.roll();
+        this.value = value;
     };
 
-    roll= () => Math.floor(Math.random() * 6) + 1;
+    roll() {
+        let value = Math.floor(Math.random() * 6) + 1;
+        this.value = `${value}`;
+        this.div.text(this.value);
+        return value;
+    }
 }
 
+let div;
+let value;
 let counter = 0;
+let dice = [];
 
 $('#generate').click(function() {
     counter++;
-    new Die;
-    });
-
-$('#roll').click(function(e) {
-    
+    let newDie = new Die;
+    newDie;
+    dice.push(newDie);
+    console.log(dice);
 });
+
+$('#roll').click(function() {
+    dice.forEach((i) => i.roll());
+});
+
+// $('#sum').click(function(
